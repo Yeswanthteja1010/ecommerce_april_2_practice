@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_IMAGE = "my-ecommerce-backend1"
+        DOCKER_IMAGE = "yeswanthteja/my-ecommerce-backend1"
         DOCKER_TAG = "${BUILD_NUMBER}"
         // REGISTRY = "yeswanthteja/my-ecommerce"
     }

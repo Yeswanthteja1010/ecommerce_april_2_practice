@@ -2,9 +2,9 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_IMAGE = "my-ecommerce-backend"
+        DOCKER_IMAGE = "my-ecommerce-backend1"
         DOCKER_TAG = "${BUILD_NUMBER}"
-        REGISTRY = "yeswanthteja/my-ecommerce"
+        // REGISTRY = "yeswanthteja/my-ecommerce"
     }
     
     stages {
@@ -26,8 +26,8 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([credentialsId: 'Docker_hub_cred', url: '']) {
-                        sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${REGISTRY}:${DOCKER_TAG}"
-                        sh "docker push ${REGISTRY}:${DOCKER_TAG}"
+                        // sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${REGISTRY}:${DOCKER_TAG}"
+                        sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     }
                 }
             }
@@ -38,7 +38,7 @@ pipeline {
                 script {
                     sh "docker stop ecommerce || true"
                     sh "docker rm ecommerce || true"
-                    sh "docker run -d -p 5000:5000 --name ecommerce ${REGISTRY}:${DOCKER_TAG}"
+                    sh "docker run -d -p 5000:5000 --name ecommerce ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }

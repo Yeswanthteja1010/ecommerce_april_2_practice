@@ -38,7 +38,7 @@ pipeline {
                 script {
                     sh "docker stop ecommerce || true"
                     sh "docker rm ecommerce || true"
-                    sh "docker run -d -p 5000:5000 --name ecommerce ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "docker run -d -p 5000:5000 --name ecommerce1 ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
